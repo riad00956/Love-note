@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <title>তুমি কি আমাকে ভালোবাসো?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff99cc, #cc66ff);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #ff66cc;
+    }
+    .buttons {
+      display: flex;
+      gap: 30px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #ff3399, #cc33ff);
+      color: white;
+      box-shadow: 0 0 15px #ff33cc;
+      transition: transform 0.3s ease;
+      user-select: none;
+      position: relative;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #ff33cc;
+    }
+
+    /* No বাটন ইচ্ছামতো চলাচল করবে */
+    #noBtn {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>তুমি কি আমাকে ভালোবাসো?</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">হ্যাঁ</button>
+    <button id="noBtn">না</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+
+    function moveNoButton() {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('click', moveNoButton);
+
+    // হ্যাঁ বাটনে ক্লিক করলে ভালোবাসার নোট পেজে যাবে
+    document.getElementById('yesBtn').addEventListener('click', () => {
+      window.location.href = 'love-note.html';
+    });
+  </script>
+</body>
+</html>
