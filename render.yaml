@@ -1,0 +1,7 @@
+services:
+  - type: static
+    name: love-note-site
+    env: static
+    staticPublishPath: /
+    buildCommand: ""
+    startCommand: ""
