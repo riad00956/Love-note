@@ -27,6 +27,7 @@
     .buttons {
       display: flex;
       gap: 30px;
+      margin-top: 20px;
     }
     button {
       padding: 15px 30px;
@@ -51,11 +52,31 @@
     #noBtn {
       position: relative;
     }
+
+    /* GIF স্টাইল */
+    .gif-container {
+      margin-top: 30px;
+      max-width: 300px;
+      width: 80vw;
+      border-radius: 20px;
+      box-shadow: 0 0 25px #ff33cc;
+      overflow: hidden;
+    }
+    .gif-container img {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
+
   </style>
 </head>
 <body>
 
   <h1>তুমি কি আমাকে ভালোবাসো?</h1>
+
+  <div class="gif-container">
+    <img src="https://media.giphy.com/media/1JmGiBtqTuehfYxuy9/giphy.gif" alt="Lovely GIF" />
+  </div>
 
   <div class="buttons">
     <button id="yesBtn">হ্যাঁ</button>
@@ -76,7 +97,6 @@
     noBtn.addEventListener('mouseenter', moveNoButton);
     noBtn.addEventListener('click', moveNoButton);
 
-    // হ্যাঁ বাটনে ক্লিক করলে ভালোবাসার নোট পেজে যাবে
     document.getElementById('yesBtn').addEventListener('click', () => {
       window.location.href = 'love-note.html';
     });
