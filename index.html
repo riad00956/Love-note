@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>তুমি কি আমাকে ভালোবাসো?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -12,23 +16,30 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
       height: 100vh;
-      display: flex;
-      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: hidden;
+      height: 100vh;
+      padding: 20px;
+      animation: fadeIn 1s ease-in-out;
     }
+
+    .active {
+      display: flex;
+      flex-direction: column;
+    }
+
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       text-shadow: 0 0 10px #ff66cc;
     }
-    .buttons {
-      display: flex;
-      gap: 30px;
-      margin-top: 20px;
-    }
+
     button {
       padding: 15px 30px;
       font-size: 1.3rem;
@@ -41,46 +52,91 @@
       box-shadow: 0 0 15px #ff33cc;
       transition: transform 0.3s ease;
       user-select: none;
-      position: relative;
     }
+
     button:hover {
       transform: scale(1.1);
       box-shadow: 0 0 25px #ff33cc;
     }
 
-    /* No বাটন ইচ্ছামতো চলাচল করবে */
     #noBtn {
       position: relative;
     }
 
-    /* GIF স্টাইল */
-    .gif-container {
-      margin-top: 30px;
-      max-width: 300px;
-      width: 80vw;
+    .buttons {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .gif-container img {
+      width: 300px;
       border-radius: 20px;
       box-shadow: 0 0 25px #ff33cc;
-      overflow: hidden;
     }
-    .gif-container img {
-      width: 100%;
-      display: block;
-      border-radius: 20px;
+
+    /* ভালোবাসার পেজ */
+    .love-note h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .love-note p {
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .heart {
+      font-size: 50px;
+      animation: beat 1s infinite;
+      margin-top: 20px;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 768px) {
+      .love-note h1 { font-size: 42px; }
+      .love-note p { font-size: 24px; }
+      .heart { font-size: 70px; }
     }
 
   </style>
 </head>
 <body>
 
-  <h1>তুমি কি আমাকে ভালোবাসো?</h1>
-
-  <div class="gif-container">
-    <img src="https://media.giphy.com/media/1JmGiBtqTuehfYxuy9/giphy.gif" alt="Lovely GIF" />
+  <!-- প্রথম পেজ -->
+  <div id="page1" class="page active">
+    <h1>তুমি কি আমাকে ভালোবাসো?</h1>
+    <div class="gif-container">
+      <img src="https://media.giphy.com/media/1JmGiBtqTuehfYxuy9/giphy.gif" alt="Lovely GIF" />
+    </div>
+    <div class="buttons">
+      <button id="yesBtn">হ্যাঁ</button>
+      <button id="noBtn">না</button>
+    </div>
   </div>
 
-  <div class="buttons">
-    <button id="yesBtn">হ্যাঁ</button>
-    <button id="noBtn">না</button>
+  <!-- দ্বিতীয় পেজ -->
+  <div id="page2" class="page love-note">
+    <h1>ভা
+    YOU ARE MY LOVE 😘💝</h1>
+    <p>
+      আমি জানতাম তুমি হ্যাঁ বলবে!<br>
+      তুমি আমার জীবনের সবচেয়ে স্পেশাল মানুষ।<br>
+      তোমাকে ছাড়া আমি কল্পনাও করতে পারি না... ❤️
+    </p>
+    <div class="heart">💖</div>
   </div>
 
   <script>
@@ -98,8 +154,10 @@
     noBtn.addEventListener('click', moveNoButton);
 
     document.getElementById('yesBtn').addEventListener('click', () => {
-      window.location.href = 'love-note.html';
+      document.getElementById('page1').classList.remove('active');
+      document.getElementById('page2').classList.add('active');
     });
   </script>
+
 </body>
 </html>
